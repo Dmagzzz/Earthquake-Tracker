@@ -12,8 +12,8 @@ export const LOGIN = gql`
 `;
 
 export const UPDATE_COORDINATES = gql`
-  mutation updateCoordinates($input: Coordinates!) {
-    updateCoordinates(input: $input) {
+  mutation updateCoordinates($coordinates: CoordinatesInput!) {
+    updateCoordinates(coordinates: $coordinates) {
         latitude
         longitude
         altitude

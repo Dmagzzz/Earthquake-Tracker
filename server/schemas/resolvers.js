@@ -139,7 +139,7 @@ const resolvers = {
     },
     updateCoordinates: async (parent, args, context) => {
       if (context.user) {
-        return await User.findByIdAndUpdate(context.user._id, args, { new: true });
+        return await User.findByIdAndUpdate(context.user._id, args.coordinates, { new: true });
       }
 
       throw new AuthenticationError('Not logged in');

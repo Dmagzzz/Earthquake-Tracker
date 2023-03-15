@@ -15,7 +15,7 @@ function Profile() {
     const { name, value } = event.target;
     setFormState({
       ...formState,
-      [name]: value,
+      [name]: parseFloat(value),
     });
   };
 
@@ -23,7 +23,9 @@ function Profile() {
     // Preventing the default behavior of the form submit (which is to refresh the page)
     e.preventDefault();
     const mutationResponse = await updateCoordinates({
-      variables: formState
+      variables: {
+        coordinates: formState
+      }
     });
     // Alert the user their coordinates have been updated, clear the inputs
     alert(`Your coordinates have been updated`);
