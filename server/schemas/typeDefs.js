@@ -39,6 +39,12 @@ const typeDefs = gql`
     user: User
   }
 
+  input Coordinates(latitude: Float!, longitude: Float!, altitude: Float!) {
+    latitude: Float
+    longitude: Float
+    altitude: Float
+  }
+
   type Query {
     categories: [Category]
     products(category: ID, name: String): [Product]
@@ -54,6 +60,7 @@ const typeDefs = gql`
     updateUser(firstName: String, lastName: String, email: String, password: String): User
     updateProduct(_id: ID!, quantity: Int!): Product
     login(email: String!, password: String!): Auth
+    updateCoordinates(input: Coordinates): Coordinates
   }
 `;
 
