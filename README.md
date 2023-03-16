@@ -1,7 +1,5 @@
  # Earthquake Tracker
  
-![download](https://user-images.githubusercontent.com/113950240/224185015-dd435255-b229-4d55-ab04-9d066b8b6c12.png)
-
 
 
 # The Team 🚀
