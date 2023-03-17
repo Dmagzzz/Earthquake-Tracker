@@ -157,7 +157,7 @@ db.once('open', async () => {
   //   password: 'password12345'
   // });
 
-  console.log('users seeded');
+  console.log('earthquakes seeded');
 
   process.exit();
 });
