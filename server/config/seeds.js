@@ -18,6 +18,6 @@ db.once('open', async () => {
     altitude: earthquake.geometry.coordinates[2],
   }));
   const earthquakesInserted = await Earthquake.insertMany(earthquakes);
-
+  
   process.exit();
 });

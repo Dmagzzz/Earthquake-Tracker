@@ -31,10 +31,15 @@ const userSchema = new Schema({
   longitude: {
     type: Number,
   },
-
   altitude: {
     type: Number,
   },
+  friends: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+    },
+  ],
 });
 
 // set up pre-save middleware to create password
