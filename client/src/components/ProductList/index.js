@@ -7,6 +7,8 @@ import { QUERY_PRODUCTS } from '../../utils/queries';
 import { idbPromise } from '../../utils/helpers';
 import spinner from '../../assets/spinner.gif';
 
+// change to earthquakes
+
 function ProductList() {
   const [state, dispatch] = useStoreContext();
 
@@ -17,6 +19,7 @@ function ProductList() {
   useEffect(() => {
     if (data) {
       dispatch({
+        //change this to earthquakes?
         type: UPDATE_PRODUCTS,
         products: data.products,
       });
@@ -45,7 +48,9 @@ function ProductList() {
 
   return (
     <div className="my-2">
-      <h2>Our Products:</h2>
+      {/* change this to earthquake stuff */}
+      <h2> </h2>
+      {/* change this to earthquake array? */}
       {state.products.length ? (
         <div className="flex-row">
           {filterProducts().map((product) => (
@@ -60,7 +65,7 @@ function ProductList() {
           ))}
         </div>
       ) : (
-        <h3>You haven't added any products yet!</h3>
+        <h3>Recent Earthquakes</h3>
       )}
       {loading ? <img src={spinner} alt="loading" /> : null}
     </div>
