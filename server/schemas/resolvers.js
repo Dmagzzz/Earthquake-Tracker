@@ -15,7 +15,7 @@ const resolvers = {
         const friends = user.friends.map(friend => {
           const eqInProximity = earthquakes.filter(earthquake => {
             const dist = distance(friend.latitude, earthquake.latitude, friend.longitude, earthquake.longitude);
-            return dist < 15 && earthquake.mag > 5;
+            return dist < 15 && earthquake.mag > 2;
           });
           return { ...friend, eqInProximity };
         });

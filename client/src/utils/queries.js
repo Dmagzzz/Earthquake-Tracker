@@ -68,3 +68,12 @@ export const QUERY_USER = gql`
     }
   }
 `;
+
+export const QUERY_FRIENDS = gql`
+  query getFriends{
+    getFriends{
+      firstName
+      lastName
+      eqInProximity{ title, mag, time }
+    }
+  }`;

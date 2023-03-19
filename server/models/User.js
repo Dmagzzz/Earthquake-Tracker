@@ -3,6 +3,7 @@ const mongoose = require("mongoose");
 const { Schema } = mongoose;
 const bcrypt = require("bcrypt");
 const Order = require("./Order");
+const Earthquake = require("./Earthquake");
 
 const userSchema = new Schema({
   firstName: {
@@ -38,6 +39,12 @@ const userSchema = new Schema({
     {
       type: Schema.Types.ObjectId,
       ref: 'User',
+    },
+  ],
+  earthquakes: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Earthquake',
     },
   ],
 });
