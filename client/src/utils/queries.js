@@ -1,7 +1,7 @@
 import { gql } from '@apollo/client';
 
 
-export const QUERY_PRODUCTS = gql`
+export const QUERY_FRIENDS = gql`
   query getFriend($category: ID) {
     user(category: $category) {
       _id
