@@ -1,70 +1,68 @@
-import React, { useEffect } from 'react';
-import ProductItem from '../ProductItem';
-import { useStoreContext } from '../../utils/GlobalState';
-import { UPDATE_PRODUCTS } from '../../utils/actions';
-import { useQuery } from '@apollo/client';
-import { QUERY_PRODUCTS } from '../../utils/queries';
-import { idbPromise } from '../../utils/helpers';
-import spinner from '../../assets/spinner.gif';
+import { useState, useEffect } from "react";
+// import { useStoreContext } from '../../utils/GlobalState';
+import { useQuery } from "@apollo/client";
+import { QUERY_FRIENDS } from "../../utils/queries";
+// import { idbPromise } from '../../utils/helpers';
+import spinner from "../../assets/spinner.gif";
 
-function ProductList() {
-  const [state, dispatch] = useStoreContext();
+function FriendList() {
+  const [getFriend, setGetFriend] = useState([]);
 
-  const { currentCategory } = state;
-
-  const { loading, data } = useQuery(QUERY_PRODUCTS);
-
+  const { loading, data } = useQuery(QUERY_FRIENDS);
+  console.log(data);
   useEffect(() => {
     if (data) {
-      dispatch({
-        type: UPDATE_PRODUCTS,
-        products: data.products,
-      });
-      data.products.forEach((product) => {
-        idbPromise('products', 'put', product);
-      });
-    } else if (!loading) {
-      idbPromise('products', 'get').then((products) => {
-        dispatch({
-          type: UPDATE_PRODUCTS,
-          products: products,
-        });
-      });
+      setGetFriend(data.getFriends);
     }
-  }, [data, loading, dispatch]);
+    //   else if (!loading) {
+    //     idbPromise('products', 'get').then((products) => {
+    //       dispatch({
+    //         type: UPDATE_PRODUCTS,
+    //         products: products,
+    //       });
+    //     });
+    //   }
+  }, [data, loading]);
 
-  function filterProducts() {
-    if (!currentCategory) {
-      return state.products;
-    }
-
-    return state.products.filter(
-      (product) => product.category._id === currentCategory
-    );
-  }
+  // If we use this, we need to create a QUERY_FRIENDS query.
 
   return (
     <div className="my-2">
-      <h2>Our Products:</h2>
-      {state.products.length ? (
+      <h2>Friends:</h2>
+      {getFriend?.length ? (
         <div className="flex-row">
-          {filterProducts().map((product) => (
-            <ProductItem
-              key={product._id}
-              _id={product._id}
-              image={product.image}
-              name={product.name}
-              price={product.price}
-              quantity={product.quantity}
-            />
+          {getFriend.map((friend) => (
+            <>
+              <p>{friend.firstName} {friend.lastName}</p>
+              { console.log(friend.eqInProximity)}
+              <table className="distanceData">
+
+              {friend.eqInProximity.map(eq => {
+              return <div className="eq-wrapper">
+              <div className="eqTitle">
+                <p>{eq?.title}</p>
+                </div>
+                <div className="eqMag">
+                  <p> {eq?.mag} </p>
+                </div> 
+                <div className="eqTime">
+                  <p> {eq?.time} </p>
+                </div> 
+                </div>
+
+              })}
+            </table>
+          
+            </>
+
           ))}
         </div>
       ) : (
-        <h3>You haven't added any products yet!</h3>
+        <h3>You haven't added any friends yet!</h3>
       )}
       {loading ? <img src={spinner} alt="loading" /> : null}
     </div>
   );
 }
 
-export default ProductList;
+export default FriendList;
