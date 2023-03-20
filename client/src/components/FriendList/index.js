@@ -37,7 +37,7 @@ function FriendList() {
               { console.log(friend.eqInProximity)}
               <table className="distanceData">
 
-              {friend.eqInProximity.map(eq => {
+              {friend.eqInProximity.slice(0,5).map(eq => {
               return <div className="eq-wrapper">
               <div className="eqTitle">
                 <p>{eq?.title}</p>
