@@ -73,6 +73,6 @@ export const QUERY_FRIENDS = gql`
     getFriends{
       firstName
       lastName
-      eqInProximity{ title, mag, time }
+      eqInProximity{ title, time }
     }
   }`;

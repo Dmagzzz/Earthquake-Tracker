@@ -5,13 +5,14 @@ import FriendList from "../components/FriendList";
 
 function Profile() {
   const [updateCoordinates] = useMutation(UPDATE_COORDINATES);
-  // Here we set two state variables for firstName and lastName using `useState`
+  // Here we set two state variables for latitude, longitude, and altitude using `useState`
   const [formState, setFormState] = useState({
     latitude: "",
     longitude: "",
     altitude: "",
   });
 
+  // set state with inputs
   const handleInputChange = (event) => {
     const { name, value } = event.target;
     setFormState({
@@ -19,7 +20,7 @@ function Profile() {
       [name]: parseFloat(value),
     });
   };
-
+// update coordinates when the submit (onClick) is executed
   const handleFormSubmit = async (e) => {
     // Preventing the default behavior of the form submit (which is to refresh the page)
     e.preventDefault();
@@ -30,11 +31,6 @@ function Profile() {
     });
     // Alert the user their coordinates have been updated, clear the inputs
     alert(`Your coordinates have been updated`);
-    // setFormState({
-    //   latitude: "",
-    //   longitude: "",
-    //   altitude: "",
-    // });
   };
 
   // dropdown - create elements
@@ -53,6 +49,9 @@ function Profile() {
 
   return (
     <div>
+      <>
+      <h2>Profile</h2>
+      </>
       <p>Enter your coordinates:</p>
       <form className="form">
         <input
