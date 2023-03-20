@@ -2,7 +2,9 @@ const mongoose = require("mongoose");
 
 const { Schema } = mongoose;
 const bcrypt = require("bcrypt");
-//const Order = require("./Order");
+const Order = require("./Order");
+const Earthquake = require("./Earthquake");
+
 
 const userSchema = new Schema({
   firstName: {
@@ -31,10 +33,24 @@ const userSchema = new Schema({
   longitude: {
     type: Number,
   },
-
   altitude: {
     type: Number,
   },
+  userStatus: {
+    type: Boolean,
+  },
+  friends: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'User',
+    },
+  ],
+  earthquakes: [
+    {
+      type: Schema.Types.ObjectId,
+      ref: 'Earthquake',
+    },
+  ],
 });
 
 // set up pre-save middleware to create password

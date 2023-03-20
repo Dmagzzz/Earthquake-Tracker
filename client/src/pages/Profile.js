@@ -2,6 +2,8 @@ import React, { useState } from "react";
 import { useMutation } from '@apollo/client';
 import { UPDATE_COORDINATES } from '../utils/mutations';
 import ProfilePage from "../components/ProfilePage";
+import FriendList from "../components/FriendList";
+
 
 function Profile() {
   const [updateCoordinates] = useMutation(UPDATE_COORDINATES);
@@ -37,6 +39,20 @@ function Profile() {
     // });
   };
 
+  // dropdown - create elements
+  // let friends = 
+  // document.getElementById("dropdown");
+  // // actual array is named friends, under models/User.js
+  // var standins = [{firstName: "Ben", lastName: "Dover"}, {firstName: "Hugh", lastName: "Jass"}] 
+
+  // for (var i = 0; i < standins.length; i++) {
+  //   var opt = standins[i];
+  //   var el = document.createElement("option");
+  //   el.textContent = String(opt);
+  //   el.value = String(opt);
+  //   friends.appendChild(el);
+  // }
+
   return (
     <div>
       <p>Enter your coordinates:</p>
@@ -67,10 +83,20 @@ function Profile() {
         </button>
       </form>
 
-      <ProfilePage/>
 
+      <ProfilePage/>
       
+        <FriendList />
+
+      {/* dropdown menu for friends */}
+      {/* <form id = "friendslist">
+
+          <select id="dropdown">
+            <option>Select some friends: </option>
+          </select>
+      </form> */}
     </div>
+
   );
 }
 

@@ -27,7 +27,17 @@ const typeDefs = gql`
     firstName: String
     lastName: String
     email: String
-    orders: [Order]
+    latitude: Float
+    longitude: Float
+    altitude: Float
+  }
+
+  type Friend {
+    _id: ID
+    firstName: String
+    lastName: String
+    email: String
+    eqInProximity: [Earthquake]
   }
 
   type Checkout {
@@ -51,6 +61,18 @@ const typeDefs = gql`
     altitude: Float
   }
 
+  type Earthquake {
+    ids: String
+    title: String
+    time: String
+    updated: String
+    magType: String
+    mag: Float
+    latitude: Float
+    longitutde: Float
+    altitude: Float
+  }
+
   type Query {
     categories: [Category]
     products(category: ID, name: String): [Product]
@@ -58,6 +80,7 @@ const typeDefs = gql`
     user: User
     order(_id: ID!): Order
     checkout(products: [ID]!): Checkout
+    getFriends: [Friend]
   }
 
   type Mutation {

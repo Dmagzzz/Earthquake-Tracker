@@ -1,10 +1,27 @@
 const { AuthenticationError } = require('apollo-server-express');
-const { User, Product, Category, Order } = require('../models');
+const { User, Earthquake, Product, Category, Order } = require('../models');
 const { signToken } = require('../utils/auth');
+const { distance } = require('../utils/helpers');
 const stripe = require('stripe')('sk_test_4eC39HqLyjWDarjtT1zdp7dc');
 
 const resolvers = {
   Query: {
+    getFriends: async (parent, args, context) => {
+      if (context.user) {
+        const earthquakes = await Earthquake.find().lean();
+        const user = await User.findById(context.user._id)
+          .populate('friends').lean();
+          
+        const friends = user.friends.map(friend => {
+          const eqInProximity = earthquakes.filter(earthquake => {
+            const dist = distance(friend.latitude, earthquake.latitude, friend.longitude, earthquake.longitude);
+            return dist < 15 && earthquake.mag > 2;
+          });
+          return { ...friend, eqInProximity };
+        });
+        return friends;
+      }
+    },
     categories: async () => {
       return await Category.find();
     },
