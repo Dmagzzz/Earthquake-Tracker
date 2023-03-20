@@ -82,6 +82,7 @@ function Profile() {
               </option>
             ))}
           </select>
+          <input type="submit" id="submitfriend">Submit</input>
       </form>
     </div>
 
