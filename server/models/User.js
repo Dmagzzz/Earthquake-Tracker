@@ -35,6 +35,9 @@ const userSchema = new Schema({
   altitude: {
     type: Number,
   },
+  userStatus: {
+    type: Boolean,
+  },
   friends: [
     {
       type: Schema.Types.ObjectId,
