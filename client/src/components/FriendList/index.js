@@ -42,9 +42,6 @@ function FriendList() {
               <div className="eqTitle">
                 <p>{eq?.title}</p>
                 </div>
-                <div className="eqMag">
-                  <p> {eq?.mag} </p>
-                </div> 
                 <div className="eqTime">
                   <p> {eq?.time} </p>
                 </div> 
