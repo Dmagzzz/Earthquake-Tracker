@@ -37,19 +37,9 @@ function Profile() {
     // });
   };
 
-  // dropdown - create elements
-  // let friends = 
-  // document.getElementById("dropdown");
-  // // actual array is named friends, under models/User.js
-  // var standins = [{firstName: "Ben", lastName: "Dover"}, {firstName: "Hugh", lastName: "Jass"}] 
-
-  // for (var i = 0; i < standins.length; i++) {
-  //   var opt = standins[i];
-  //   var el = document.createElement("option");
-  //   el.textContent = String(opt);
-  //   el.value = String(opt);
-  //   friends.appendChild(el);
-  // }
+  // dropdown - array
+  // actual array is named friends, under models/User.js
+  var standins = [{firstName: "", lastName: ""},{firstName: "Ben", lastName: "Dover"}, {firstName: "Hugh", lastName: "Jass"}] 
 
   return (
     <div>
@@ -83,12 +73,16 @@ function Profile() {
         <FriendList />
 
       {/* dropdown menu for friends */}
-      {/* <form id = "friendslist">
+      <form id = "friendslist">
 
           <select id="dropdown">
-            <option>Select some friends: </option>
+            {standins.map((item) => (
+              <option key={item.firstName} value={item.lastName}>
+                {item.firstName} {item.lastName}
+              </option>
+            ))}
           </select>
-      </form> */}
+      </form>
     </div>
 
   );
