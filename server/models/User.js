@@ -5,6 +5,7 @@ const bcrypt = require("bcrypt");
 const Order = require("./Order");
 const Earthquake = require("./Earthquake");
 
+
 const userSchema = new Schema({
   firstName: {
     type: String,
