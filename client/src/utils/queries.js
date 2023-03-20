@@ -1,19 +1,19 @@
 import { gql } from '@apollo/client';
 
 
-export const QUERY_FRIENDS = gql`
-  query getFriend($category: ID) {
-    user(category: $category) {
-      _id
-     firstName
-     lastName
-     latitude
-     longitude
-     altitude
-     userStatus
-    }
-  }
-`;
+// export const QUERY_FRIENDS = gql`
+//   query getFriend($category: ID) {
+//     user(category: $category) {
+//       _id
+//      firstName
+//      lastName
+//      latitude
+//      longitude
+//      altitude
+//      userStatus
+//     }
+//   }
+// `;
 
 export const QUERY_CHECKOUT = gql`
   query getCheckout($products: [ID]!) {
@@ -74,5 +74,9 @@ export const QUERY_FRIENDS = gql`
       firstName
       lastName
       eqInProximity{ title, mag, time }
+      latitude
+      longitude
+      altitude
+      userStatus
     }
   }`;
