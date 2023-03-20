@@ -57,5 +57,4 @@ function CategoryMenu() {
     </div>
   );
 }
-
 export default CategoryMenu;

@@ -2,6 +2,7 @@
 import { useQuery } from "@apollo/client";
 import { QUERY_FRIENDS } from "../../utils/queries";
 import spinner from "../../assets/spinner.gif";
+import moment from "moment";
 
 function FriendList() {
   // const [getFriend, setGetFriend] = useState([]);
@@ -24,25 +25,25 @@ function FriendList() {
       {getFriend?.length ? (
         <div className="flex-row">
           {getFriend.map((friend) => (
-            <>
+            <div key={friend._id}>
               <p>{friend.firstName} {friend.lastName}</p>
               { console.log(friend.eqInProximity)}
               <div className="distanceData">
 
               {friend.eqInProximity.slice(0,5).map(eq => {
-              return <div className="eq-wrapper">
+              return <div key={eq._id} className="eq-wrapper">
               <div className="eqTitle">
-                <p>Title: {eq?.title}</p>
+                <p>Title: {eq.title}</p>
                 </div>
                 <div className="eqTime">
-                  <p> Date: {eq?.time} </p>
+                  <p> Date: {moment.unix(eq.time/1000).format("MM/DD/YYYY hh:mm:ss")} </p>
                 </div> 
                 </div>
 
               })}
             </div>
           
-            </>
+            </div>
 
           ))}
         </div>
