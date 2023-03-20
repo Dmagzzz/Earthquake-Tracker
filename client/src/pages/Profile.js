@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useMutation } from '@apollo/client';
 import { UPDATE_COORDINATES } from '../utils/mutations';
+import ProfilePage from "../components/ProfilePage";
 
 function Profile() {
   const [updateCoordinates] = useMutation(UPDATE_COORDINATES);
@@ -65,6 +66,10 @@ function Profile() {
           Submit
         </button>
       </form>
+
+      <ProfilePage/>
+
+      
     </div>
   );
 }
