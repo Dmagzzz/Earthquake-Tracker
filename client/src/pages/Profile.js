@@ -67,6 +67,7 @@ function Profile() {
         <h1 class="mx-1">Profile</h1>
         <ProfilePage user={user} />
       </>
+
       <p id="middle column"  class="mx-1">Enter your coordinates:</p>
       <form className="form" id="middle column" class="mx-1">
         <input class="mx-1"
@@ -94,8 +95,6 @@ function Profile() {
           Submit
         </button>
       </form>
-
-      <hr></hr>
       <FriendList />
       {data?.usersWithoutCurr?.length && (
         <div id="middle" class="mx-1">
