@@ -4,7 +4,7 @@ import HomePage from "../components/HomePage";
 
 const Home = () => {
   return (
-    <div className="container">
+    <div className="container" id="middle">
       <HomePage />
 
     </div>
