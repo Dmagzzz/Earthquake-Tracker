@@ -37,7 +37,7 @@ of an earthquake,
 #
 # Features
 * API - https://earthquake.usgs.gov/fdsnws/event/1/
-* CSS- Tailwind
+
 
 
 #
@@ -71,9 +71,9 @@ of an earthquake,
 ##
 
 #
-## Link to deployed app
+## Link to deployed Heroku app
 
-* 
+* https://earthquake-track.herokuapp.com/
 
 #
 ## Questions
