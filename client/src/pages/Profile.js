@@ -1,26 +1,24 @@
 import React, { useState, useEffect } from "react";
 import { useMutation, useQuery } from "@apollo/client";
-import { UPDATE_COORDINATES  } from "../utils/mutations";
-import { QUERY_USER } from '../utils/queries';
+import { ADD_FRIEND, UPDATE_COORDINATES } from "../utils/mutations";
+import { QUERY_USERS_PROFILE_PAGE } from "../utils/queries";
 import ProfilePage from "../components/ProfilePage";
 import FriendList from "../components/FriendList";
 
 function Profile() {
   const [updateCoordinates] = useMutation(UPDATE_COORDINATES);
+  const [addFriend] = useMutation(ADD_FRIEND);
   const [user, setUser] = useState({});
-  const [standins] = useState([
-    { firstName: "", lastName: "" },
-    { firstName: "Ben", lastName: "Dover" },
-    { firstName: "Hugh", lastName: "Jass" },
-  ]);
-  const { loading, data } = useQuery(QUERY_USER);
+  const [newFriendId, setNewFriendId] = useState("");
+  const { loading, data } = useQuery(QUERY_USERS_PROFILE_PAGE);
+  // const { loadingUsers, usersWithoutCurr } = useQuery(QUERY_USERS_WITHOUT_CURR);
 
   useEffect(() => {
     if (data) {
       setUser(data.user);
+      setNewFriendId(data.usersWithoutCurr[0]?._id || "");
     }
   }, [data, loading]);
-
 
   // set state with inputs
   const handleInputChange = (event) => {
@@ -54,6 +52,14 @@ function Profile() {
   //   { firstName: "Ben", lastName: "Dover" },
   //   { firstName: "Hugh", lastName: "Jass" },
   // ];
+  const handleAddFriend = async () => {
+    const mutationResponse = await addFriend({
+      variables: {
+        friendId: newFriendId,
+      },
+    });
+    window.location.reload();
+  };
 
   return (
     <div>
@@ -63,21 +69,21 @@ function Profile() {
       <p>Enter your coordinates:</p>
       <form className="form">
         <input
-          value={user?.latitude}
+          value={user.latitude}
           name="latitude"
           onChange={handleInputChange}
           type="text"
           placeholder="Latitude"
         />
         <input
-          value={user?.longitude}
+          value={user.longitude}
           name="longitude"
           onChange={handleInputChange}
           type="text"
           placeholder="Longitude"
         />
         <input
-          value={user?.altitude}
+          value={user.altitude}
           name="altitude"
           onChange={handleInputChange}
           type="text"
@@ -91,19 +97,21 @@ function Profile() {
       <ProfilePage user={user} />
 
       <FriendList />
-
-      {/* dropdown menu for friends */}
-      {/* <form id="friendslist"> */}
-
-          <select id="dropdown">
-            {standins.map((item) => (
-              <option key={item?.firstName} value={item?.lastName}>
-                {item?.firstName} {item?.lastName}
+      {data?.usersWithoutCurr?.length && (
+        <div>
+          <select
+            onChange={(e) => setNewFriendId(e.target.value)}
+            id="dropdown"
+          >
+            {data.usersWithoutCurr.map((user) => (
+              <option key={user?._id} value={user?._id}>
+                {user?.firstName} {user?.lastName}
               </option>
             ))}
           </select>
-          {/* <input type="submit" id="submitfriend">Submit</input> */}
-      {/* </form> */}
+          <button onClick={handleAddFriend}>Add Friend</button>
+        </div>
+      )}
     </div>
   );
 }

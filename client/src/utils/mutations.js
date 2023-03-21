@@ -44,25 +44,11 @@ export const ADD_USER = gql`
 `;
 
 export const ADD_FRIEND = gql`
-  mutation addFriend(
-    $firstName: String!
-    $lastName: String!
-    $latitude: Number!
-    $longitude: Number!
-    $altitude: Number!
-    $userStatus: Boolean!
-
-  ) {
-    addUser(
-      firstName: $firstName
-      lastName: $lastName
-      latitude: $latitude
-      longitude: $longitude
-      altitude: $altitude
-      userStatus: $userStatus
-    ) {
-      token
-      user {
+  mutation addFriend($friendId: ID!) {
+    addFriend(friendId: $friendId) {
+      firstName
+      lastName
+      friends {
         _id
       }
     }
