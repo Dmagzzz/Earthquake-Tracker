@@ -69,7 +69,7 @@ function Profile() {
 
       <ProfilePage user={user} />
 
-      <p>Enter your coordinates:</p>
+      <p>Enter/Update your coordinates:</p>
       <form className="form">
         <input
           value={user.latitude}
