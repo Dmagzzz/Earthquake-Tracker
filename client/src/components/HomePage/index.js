@@ -5,7 +5,8 @@ function HomePage(){
         <div>
             <img src="./images/earthquakeimg.jpg" alt="City split open by earthquake"/>
             <h2>Safe or Not?</h2>
-            <p>When disaster strikes, how do you let your loved ones know you're safe? With QuakeFriends, you can quickly switch your status to let people know if you're in danger.</p>
+            <p>How do you let your loved ones know you're safe when disaster strikes?</p>
+            <p>With QuakeFriends, you can add and view friends to check on them when earthquakes occur within 15 miles from their coordinates.</p>
     </div>
     );
 }
