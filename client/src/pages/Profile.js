@@ -62,43 +62,43 @@ function Profile() {
   };
 
   return (
-    <div>
+    <div id="middle">
       <>
-        <h2>Profile</h2>
+        <h1 class="mx-1">Profile</h1>
+        <ProfilePage user={user} />
       </>
-      <p>Enter your coordinates:</p>
-      <form className="form">
-        <input
+      <p id="middle column"  class="mx-1">Enter your coordinates:</p>
+      <form className="form" id="middle column" class="mx-1">
+        <input class="mx-1"
           value={user.latitude}
           name="latitude"
           onChange={handleInputChange}
           type="text"
           placeholder="Latitude"
         />
-        <input
+        <input class="mx-1"
           value={user.longitude}
           name="longitude"
           onChange={handleInputChange}
           type="text"
           placeholder="Longitude"
         />
-        <input
+        <input class="mx-1"
           value={user.altitude}
           name="altitude"
           onChange={handleInputChange}
           type="text"
           placeholder="Altitude"
         />
-        <button type="button" onClick={handleFormSubmit}>
+        <button type="button" onClick={handleFormSubmit} class="mx-1">
           Submit
         </button>
       </form>
 
-      <ProfilePage user={user} />
-
+      <hr></hr>
       <FriendList />
       {data?.usersWithoutCurr?.length && (
-        <div>
+        <div id="middle" class="mx-1">
           <select
             onChange={(e) => setNewFriendId(e.target.value)}
             id="dropdown"

@@ -5,10 +5,10 @@ function ProfilePage({ user}) {
     const [status,setStatus]=useState(false)
 
     return (<div> 
-        <h1>{user?.firstName} {user?.lastName}</h1>
-        <h2>{user?.email}</h2>
-        <button onClick={()=>setStatus(true)}>Are you ok? Click if you are!</button>
-        <p>{status ? "I am safe!":"Waiting For Response"}</p>
+        <h2 class="mx-1">{user?.firstName} {user?.lastName} - {user?.email}</h2>
+        <button class="mx-1" onClick={()=>setStatus(true)}>Are you ok? Click if you are!</button>
+        <p class="mx-1">{status ? "I am safe!":"Waiting For Response"}</p>
+        <hr></hr>
     </div>)
 }
 
