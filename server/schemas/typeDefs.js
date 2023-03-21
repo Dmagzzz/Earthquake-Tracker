@@ -30,6 +30,7 @@ const typeDefs = gql`
     latitude: Float
     longitude: Float
     altitude: Float
+    friends: [User]
   }
 
   type Friend {
@@ -81,6 +82,7 @@ const typeDefs = gql`
     order(_id: ID!): Order
     checkout(products: [ID]!): Checkout
     getFriends: [Friend]
+    usersWithoutCurr: [User]
   }
 
   type Mutation {
@@ -100,7 +102,9 @@ const typeDefs = gql`
     updateProduct(_id: ID!, quantity: Int!): Product
     login(email: String!, password: String!): Auth
     updateCoordinates(coordinates: CoordinatesInput): Coordinates
+    addFriend(friendId: ID!): User
   }
+
 `;
 
 module.exports = typeDefs;
