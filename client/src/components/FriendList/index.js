@@ -10,7 +10,7 @@ function FriendList() {
   // Using the query QUERY_FRIENDS to get the data
   const { loading, data } = useQuery(QUERY_FRIENDS);
   const getFriend = data?.getFriends || [];
-  const [show, setShow] = useState(null);
+  const [show, setShow] = useState({});
   // console.log(data);
   // useEffect(() => {
   //   if (data) {
@@ -18,9 +18,9 @@ function FriendList() {
   // }, [data, loading]);
 
   // If we use this, we need to create a QUERY_FRIENDS query.
-if (loading) {
-  return "Loading..."
-}
+  if (loading) {
+    return "Loading...";
+  }
   // Using maps, we can get the friend data of their names, close earthquake titles and dates.
   return (
     <div className="my-2">
@@ -32,35 +32,35 @@ if (loading) {
               <p>
                 {friend.firstName} {friend.lastName}
               </p>
-              <button onClick={() => setShow(!show)}>
-                        Show More
-                      </button>
+              <button
+                onClick={() =>
+                  setShow({ ...show, [friend._id]: !show[friend._id] })
+                }
+              >
+                Show More
+              </button>
               {console.log(friend.eqInProximity)}
-              <div className="distanceData">
-                {friend.eqInProximity.slice(0, 5).map((eq) => {
-                  return (
-                    <div key={eq._id} className="eq_wrapper">
-                      {show ? (
-                        <>
-                  
-                          <div className="eqTitle">
-                            <p>Title: {eq.title}</p>
-                          </div>
-                          <div className="eqTime">
-                            <p>
-                          
-                              Date:{" "}
-                              {moment
-                                .unix(eq.time / 1000)
-                                .format("MM/DD/YYYY hh:mm:ss")}{" "}
-                            </p>
-                          </div>
-                        </>
-                      ) : null}
-                    </div>
-                  );
-                })}
-              </div>
+              {show[friend._id] && (
+                <div className="distanceData">
+                  {friend.eqInProximity.slice(0, 5).map((eq) => {
+                    return (
+                      <div key={eq._id} className="eq_wrapper">
+                        <div className="eqTitle">
+                          <p>Title: {eq.title}</p>
+                        </div>
+                        <div className="eqTime">
+                          <p>
+                            Date:
+                            {moment
+                              .unix(eq.time / 1000)
+                              .format("MM/DD/YYYY hh:mm:ss")}{" "}
+                          </p>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
+              )}
             </div>
           ))}
         </div>

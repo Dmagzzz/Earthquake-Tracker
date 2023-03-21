@@ -14,7 +14,6 @@ import Login from './pages/Login';
 import Signup from './pages/Signup';
 import Nav from './components/Nav';
 import Profile from './pages/Profile';
-import { StoreProvider } from './utils/GlobalState';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -40,7 +39,6 @@ function App() {
     <ApolloProvider client={client}>
       <Router>
         <div>
-          <StoreProvider>
             <Nav />
             <Routes>
               <Route 
@@ -64,7 +62,6 @@ function App() {
                 element={<NoMatch />} 
               />
             </Routes>
-          </StoreProvider>
         </div>
       </Router>
     </ApolloProvider>
