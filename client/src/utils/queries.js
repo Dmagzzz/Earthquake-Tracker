@@ -52,18 +52,10 @@ export const QUERY_USER = gql`
     user {
       firstName
       lastName
-      orders {
-        _id
-        purchaseDate
-        products {
-          _id
-          name
-          description
-          price
-          quantity
-          image
-        }
-      }
+      email
+      latitude
+      longitude
+      altitude
     }
   }
 `;
@@ -73,10 +65,6 @@ export const QUERY_FRIENDS = gql`
     getFriends{
       firstName
       lastName
-      eqInProximity{ title, mag, time }
-      latitude
-      longitude
-      altitude
-      userStatus
+      eqInProximity{ title, time }
     }
   }`;
