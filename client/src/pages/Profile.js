@@ -8,6 +8,11 @@ import FriendList from "../components/FriendList";
 function Profile() {
   const [updateCoordinates] = useMutation(UPDATE_COORDINATES);
   const [user, setUser] = useState({});
+  const [standins] = useState([
+    { firstName: "", lastName: "" },
+    { firstName: "Ben", lastName: "Dover" },
+    { firstName: "Hugh", lastName: "Jass" },
+  ]);
   const { loading, data } = useQuery(QUERY_USER);
 
   useEffect(() => {
@@ -32,9 +37,9 @@ function Profile() {
     const mutationResponse = await updateCoordinates({
       variables: {
         coordinates: {
-          latitude: user.latitude,
-          longitude: user.longitude,
-          altitude: user.altitude,
+          latitude: user?.latitude,
+          longitude: user?.longitude,
+          altitude: user?.altitude,
         },
       },
     });
@@ -44,11 +49,11 @@ function Profile() {
 
   // dropdown - array
   // actual array is named friends, under models/User.js
-  var standins = [
-    { firstName: "", lastName: "" },
-    { firstName: "Ben", lastName: "Dover" },
-    { firstName: "Hugh", lastName: "Jass" },
-  ];
+  // var standins = [
+  //   { firstName: "", lastName: "" },
+  //   { firstName: "Ben", lastName: "Dover" },
+  //   { firstName: "Hugh", lastName: "Jass" },
+  // ];
 
   return (
     <div>
@@ -58,21 +63,21 @@ function Profile() {
       <p>Enter your coordinates:</p>
       <form className="form">
         <input
-          value={user.latitude}
+          value={user?.latitude}
           name="latitude"
           onChange={handleInputChange}
           type="text"
           placeholder="Latitude"
         />
         <input
-          value={user.longitude}
+          value={user?.longitude}
           name="longitude"
           onChange={handleInputChange}
           type="text"
           placeholder="Longitude"
         />
         <input
-          value={user.altitude}
+          value={user?.altitude}
           name="altitude"
           onChange={handleInputChange}
           type="text"
@@ -88,17 +93,17 @@ function Profile() {
       <FriendList />
 
       {/* dropdown menu for friends */}
-      {/* <form id = "friendslist">
+      {/* <form id="friendslist"> */}
 
           <select id="dropdown">
             {standins.map((item) => (
-              <option key={item.firstName} value={item.lastName}>
-                {item.firstName} {item.lastName}
+              <option key={item?.firstName} value={item?.lastName}>
+                {item?.firstName} {item?.lastName}
               </option>
             ))}
           </select>
-          <input type="submit" id="submitfriend">Submit</input>
-      </form> */}
+          {/* <input type="submit" id="submitfriend">Submit</input> */}
+      {/* </form> */}
     </div>
   );
 }
