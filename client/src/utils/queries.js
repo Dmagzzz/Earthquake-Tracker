@@ -80,10 +80,14 @@ export const QUERY_USERS_PROFILE_PAGE = gql`
 `;
 
 export const QUERY_FRIENDS = gql`
-  query getFriends{
-    getFriends{
+  query getFriends {
+    getFriends {
+      _id
       firstName
       lastName
-      eqInProximity{ title, time }
+      eqInProximity {
+        title
+        time
+      }
     }
   }`;

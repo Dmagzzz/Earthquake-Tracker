@@ -25,7 +25,7 @@ function Profile() {
     const { name, value } = event.target;
     setUser({
       ...user,
-      [name]: parseFloat(value),
+      [name]: value,
     });
   };
   // update coordinates when the submit (onClick) is executed
@@ -35,9 +35,9 @@ function Profile() {
     const mutationResponse = await updateCoordinates({
       variables: {
         coordinates: {
-          latitude: user?.latitude,
-          longitude: user?.longitude,
-          altitude: user?.altitude,
+          latitude: parseFloat(user?.latitude),
+          longitude: parseFloat(user?.longitude),
+          altitude: parseFloat(user?.altitude),
         },
       },
     });
