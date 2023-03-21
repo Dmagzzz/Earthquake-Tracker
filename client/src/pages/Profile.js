@@ -66,7 +66,10 @@ function Profile() {
       <>
         <h2>Profile</h2>
       </>
-      <p>Enter your coordinates:</p>
+
+      <ProfilePage user={user} />
+
+      <p>Enter/Update your coordinates:</p>
       <form className="form">
         <input
           value={user.latitude}
@@ -93,8 +96,6 @@ function Profile() {
           Submit
         </button>
       </form>
-
-      <ProfilePage user={user} />
 
       <FriendList />
       {data?.usersWithoutCurr?.length && (
