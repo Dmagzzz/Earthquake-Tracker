@@ -10,7 +10,7 @@ function FriendList() {
   // Using the query QUERY_FRIENDS to get the data
   const { loading, data } = useQuery(QUERY_FRIENDS);
   const getFriend = data?.getFriends || [];
-  const [show, setShow] = useState({});
+  const [show, setShow] = useState([]);
   // console.log(data);
   // useEffect(() => {
   //   if (data) {
@@ -21,26 +21,39 @@ function FriendList() {
   if (loading) {
     return "Loading...";
   }
+
+  const handleShow = (id) => {
+    const currentShow = [ ...show ]
+    const isShowing = currentShow?.find(item => item === id)
+    console.log(isShowing, "Hello")
+    if (isShowing) {
+      const newShow = currentShow.filter(item => item !== id)
+      setShow(newShow)
+    } else {
+      setShow(prev => [...prev, id])
+    }
+  }
   // Using maps, we can get the friend data of their names, close earthquake titles and dates.
   return (
     <div className="my-2">
       <h2>Friends:</h2>
       {getFriend?.length ? (
         <div className="flex-row">
-          {getFriend.map((friend) => (
+          {getFriend.map((friend) => {
+            const isShow = show?.find(item => item === friend._id)
+            return (
             <div key={friend._id}>
               <p>
                 {friend.firstName} {friend.lastName}
               </p>
               <button
-                onClick={() =>
-                  setShow({ ...show, [friend._id]: !show[friend._id] })
+                onClick={() => handleShow(friend._id)
+
                 }
               >
-                Show More
+                {isShow ? "Show Less" : "Show More"}
               </button>
-              {console.log(friend.eqInProximity)}
-              {show[friend._id] && (
+              {isShow && (
                 <div className="distanceData">
                   {friend.eqInProximity.slice(0, 5).map((eq) => {
                     return (
@@ -62,7 +75,7 @@ function FriendList() {
                 </div>
               )}
             </div>
-          ))}
+          )})}
         </div>
       ) : (
         <h3>You haven't added any friends yet!</h3>
